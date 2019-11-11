@@ -17,16 +17,41 @@ import org.apache.http.util.EntityUtils;
 
 import com.huazai.httpclient.common.HttpResult;
 
+/**
+ * 
+ * @author HuaZai
+ * @contact who.seek.me@java98k.vip
+ *          <ul>
+ * @description HttpClient API
+ *              </ul>
+ * @className APIService
+ * @package com.huazai.httpclient.api
+ * @createdTime 2017年06月17日
+ *
+ * @version V1.0.0
+ */
+public class APIService
+{
 
-public class APIService {
-	// 1.不带参数的GET请求
-	public HttpResult doget(String url) throws Exception {
-		return doGet(url, null);
-	}
-
-	// 2.带参数的GET请求
-	// 要返回http状态码以及响应的内容
-	public HttpResult doGet(String url, Map<String, Object> map) throws Exception {
+	/**
+	 * 
+	 * @author HuaZai
+	 * @contact who.seek.me@java98k.vip
+	 * @title doGet
+	 *        <ul>
+	 * @description 带参数的GET请求
+	 *              </ul>
+	 * @createdTime 2017年06月17日
+	 * @param url
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 * @return HttpResult
+	 *
+	 * @version : V1.0.0
+	 */
+	public HttpResult doGet(String url, Map<String, Object> map) throws Exception
+	{
 		// 1.创建httpclient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 2.创建httget请求
@@ -34,8 +59,10 @@ public class APIService {
 		URIBuilder uriBuilder = new URIBuilder(url);
 		// 循环遍历参数集合 设置参数
 		// 判断如果map不为空
-		if (map != null) {
-			for (Map.Entry<String, Object> entry : map.entrySet()) {
+		if (map != null)
+		{
+			for (Map.Entry<String, Object> entry : map.entrySet())
+			{
 				uriBuilder.setParameter(entry.getKey(), entry.getValue().toString());
 			}
 		}
@@ -45,34 +72,70 @@ public class APIService {
 		// 4.接收响应内容，进行解析 封装到httpresult
 		// 内容有的时候
 		Integer code = response.getStatusLine().getStatusCode();// 响应的状态码
-		if (response.getEntity() != null) {
+		if (response.getEntity() != null)
+		{
 			String body = EntityUtils.toString(response.getEntity(), "utf-8");// 获取响应的内容，转换成字符串
 			HttpResult result = new HttpResult(code, body);
 			return result;
-		} else {
+		} else
+		{
 			HttpResult result = new HttpResult(code, null);
 			return result;
 		}
 	}
 
-	// 3.不带参数的POST请求
-	public HttpResult doPost(String url) throws Exception {
-		return doPost(url, null);
+	/**
+	 * 
+	 * @author HuaZai
+	 * @contact who.seek.me@java98k.vip
+	 * @title doget
+	 *        <ul>
+	 * @description 不带参数的GET请求
+	 *              </ul>
+	 * @createdTime 2017年06月17日
+	 * @param url
+	 * @return
+	 * @throws Exception
+	 * @return HttpResult
+	 *
+	 * @version : V1.0.0
+	 */
+	public HttpResult doGet(String url) throws Exception
+	{
+		return doGet(url, null);
 	}
 
-	// 4.带参数的POST请求
-	public HttpResult doPost(String url, Map<String, Object> map) throws Exception {
-
+	/**
+	 * 
+	 * @author HuaZai
+	 * @contact who.seek.me@java98k.vip
+	 * @title doPost
+	 *        <ul>
+	 * @description 带参数的POST请求
+	 *              </ul>
+	 * @createdTime 2017年06月17日
+	 * @param url
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 * @return HttpResult
+	 *
+	 * @version : V1.0.0
+	 */
+	public HttpResult doPost(String url, Map<String, Object> map) throws Exception
+	{
 		// 1.创建httpclient
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		// 2.创建httppost请求
 		HttpPost httpPost = new HttpPost(url);
 		// 3.构建参数的列表
 		// 判断参数不为空的情况
-		if (map != null) {
+		if (map != null)
+		{
 			List<NameValuePair> params = new ArrayList<>();
 			// 遍历集合 构建参数列表
-			for (Map.Entry<String, Object> entry : map.entrySet()) {
+			for (Map.Entry<String, Object> entry : map.entrySet())
+			{
 				params.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
 			}
 			// 4.创建form表单传递参数的实体对象
@@ -86,14 +149,37 @@ public class APIService {
 		// 6.接收响应 封装到httpresult中
 		// 内容有的时候
 		Integer code = response.getStatusLine().getStatusCode();// 响应的状态码
-		if (response.getEntity() != null) {
+		if (response.getEntity() != null)
+		{
 			String body = EntityUtils.toString(response.getEntity(), "utf-8");// 获取响应的内容，转换成字符串
 			HttpResult result = new HttpResult(code, body);
 			return result;
-		} else {
+		} else
+		{
 			HttpResult result = new HttpResult(code, null);
 			return result;
 		}
+	}
+
+	/**
+	 * 
+	 * @author HuaZai
+	 * @contact who.seek.me@java98k.vip
+	 * @title doPost
+	 *        <ul>
+	 * @description 不带参数的POST请求
+	 *              </ul>
+	 * @createdTime 2017年06月17日
+	 * @param url
+	 * @return
+	 * @throws Exception
+	 * @return HttpResult
+	 *
+	 * @version : V1.0.0
+	 */
+	public HttpResult doPost(String url) throws Exception
+	{
+		return doPost(url, null);
 	}
 
 }
