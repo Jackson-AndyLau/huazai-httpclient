@@ -6,6 +6,17 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+/**
+ * 
+* @author HuaZai
+* @contact who.seek.me@java98k.vip
+* <ul>@description 测试不带参数的Post请求</ul>
+* @className DoPOST
+* @package com.huazai.httpclient.post
+* @createdTime 2017年06月17日
+*
+* @version V1.0.0
+ */
 public class DoPOST {
 
     public static void main(String[] args) throws Exception {
@@ -16,7 +27,7 @@ public class DoPOST {
         // 创建http POST请求
         HttpPost httpPost = new HttpPost("http://www.oschina.net/");
 
-        httpPost.setHeader("User-Agent", "");
+        httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36");
         CloseableHttpResponse response = null;
         try {
             // 执行请求
