@@ -25,10 +25,10 @@ public class DoGET
 	public static void main(String[] args) throws Exception
 	{
 
-		// 创建Httpclient对象
+		// 创建HttpClient对象
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
-		// 创建http GET请求
+		// 创建HttpGet请求对象
 		HttpGet httpGet = new HttpGet("https://xiaoyuan.zhaopin.com/api/sou?pageNumber=2");
 
 		CloseableHttpResponse response = null;
@@ -36,12 +36,13 @@ public class DoGET
 		{
 			// 执行请求
 			response = httpclient.execute(httpGet);
-			// 判断返回状态是否为200
+			// 是否请求成功
 			if (response.getStatusLine().getStatusCode() == 200)
 			{
+				// 输出响应内容
 				String content = EntityUtils.toString(response.getEntity(), "UTF-8");
 				System.out.println("内容长度：" + content.length());
-				System.out.println(content);// 响应的内容
+				System.out.println(content);
 			}
 		} finally
 		{

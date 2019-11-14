@@ -25,19 +25,19 @@ import org.apache.http.util.EntityUtils;
  *
  * @version V1.0.0
  */
-public class DoPOSTParam
+public class DoPOSTWithParam
 {
 
 	public static void main(String[] args) throws Exception
 	{
 
-		// 创建Httpclient对象
+		// 创建HttpClient对象
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
-		// 添加信息
+		// 创建HttpPost请求对象
 		HttpPost httpPost = new HttpPost("http://39.106.243.121/eto/add");
 
-		// 设置2个post参数，一个是scope、一个是q
+		// 封装请求参数列表
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>(0);
 		pairs.add(new BasicNameValuePair("CityId", "530"));
 		pairs.add(new BasicNameValuePair("CityName", "北京"));
@@ -47,9 +47,9 @@ public class DoPOSTParam
 		pairs.add(new BasicNameValuePair("IndustryName", "软件"));
 		pairs.add(new BasicNameValuePair("CompanySize", "10000人以上"));
 		pairs.add(new BasicNameValuePair("CompanyNumber", "DC000773458"));
-		// 构造一个form表单式的实体
+		// 构造一个Form表单
 		UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairs);
-		// 将请求实体设置到httpPost对象中
+		// 设置请求体
 		httpPost.setEntity(formEntity);
 
 		CloseableHttpResponse response = null;
@@ -57,9 +57,10 @@ public class DoPOSTParam
 		{
 			// 执行请求
 			response = httpclient.execute(httpPost);
-			// 判断返回状态是否为200
+			// 是否请求成功
 			if (response.getStatusLine().getStatusCode() == 200)
 			{
+				// 输出请求内容
 				String content = EntityUtils.toString(response.getEntity(), "UTF-8");
 				System.out.println(content);
 			}

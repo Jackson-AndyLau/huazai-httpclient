@@ -22,7 +22,7 @@ import org.apache.http.util.EntityUtils;
  *
  * @version V1.0.0
  */
-public class DoGETParam
+public class DoGETWithParam
 {
 
 	public static void main(String[] args) throws Exception
@@ -31,13 +31,13 @@ public class DoGETParam
 		// 创建Httpclient对象
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
-		// 定义请求的参数
+		// 定义请求的地址及参数
 		URI uri = new URIBuilder("https://xiaoyuan.zhaopin.com/api/sou").setParameter("pageNumber", "1")
 				.setParameter("keyWord", "java").build();
 
 		System.out.println(uri);
 
-		// 创建http GET请求
+		// 创建HttpGet请求对象
 		HttpGet httpGet = new HttpGet(uri);
 
 		CloseableHttpResponse response = null;
@@ -45,9 +45,10 @@ public class DoGETParam
 		{
 			// 执行请求
 			response = httpclient.execute(httpGet);
-			// 判断返回状态是否为200
+			// 是否请求成功
 			if (response.getStatusLine().getStatusCode() == 200)
 			{
+				// 输出响应内容
 				String content = EntityUtils.toString(response.getEntity(), "UTF-8");
 				System.out.println(content);
 			}
