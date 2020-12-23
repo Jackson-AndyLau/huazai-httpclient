@@ -366,6 +366,7 @@ public class DoPOSTWithParam
 HttpClient 示例项目：[huazai-httpclient](https://github.com/Jackson-AndyLau/huazai-httpclient)
 
 如下图：
+![HttpClient 示例项目](https://raw.githubusercontent.com/Jackson-AndyLau/pictures-storage/master/002/202012/20191121115009216.png)
 
 
 
